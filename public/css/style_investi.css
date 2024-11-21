@@ -1,0 +1,127 @@
+.container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding-left: 10vw;
+    margin: 0;
+    gap: 2vw;
+}
+
+.date-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4vh;
+    gap: 12vh;
+}
+
+.circle-container {
+    display: flex;
+    padding-left: 19.5vw;
+    gap: 3vw;
+}
+
+.circle {
+    width: 10vw;
+    height: 10vw;
+    background-color: rgba(40, 170, 224, 1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.circle i {
+    font-size: 5vw;
+    color: white;
+}
+
+.name-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 4vh;
+    gap: 9vh;
+}
+
+h2 {
+    font-size: 1.5vw;
+    font-family: 'Konkhmer Sleokchher', sans-serif;
+    font-weight: normal;
+}
+
+h3 {
+    font-size: 1vw;
+    font-family: 'Konkhmer Sleokchher', sans-serif;
+    font-weight: normal;
+}
+
+
+.small-circles {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2vh;
+    gap: 2vh;
+    position: relative;
+}
+
+.small-circle {
+    display: flex;
+    width: 7vw;
+    height: 7vw;
+    background-color: rgba(40, 170, 224, 1);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.small-circle i {
+    font-size: 2.5vw;
+    color: white;
+}
+
+.circle img {
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.pet-page-title {
+    font-size: 3rem;
+    font-weight: bolder;
+    text-decoration: underline;
+    text-decoration-thickness: 7px;
+    text-underline-offset: 10px;
+    padding-bottom: 2rem;
+    text-align: center;
+    color: rgba(40, 170, 224, 1);
+}
+
+.pet-page {
+    width: 15vw;
+    height: 15vw;
+}
+
+@media (max-width: 768px) {
+    .circle {
+        width: 20vw;
+        height: 20vw;
+    }
+
+    .small-circle {
+        width: 10vw;
+        height: 10vw;
+    }
+
+    h2 {
+        font-size: 1.5vw;
+    }
+
+    h3 {
+        font-size: 1vw;
+    }
+}

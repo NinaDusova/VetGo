@@ -53,7 +53,7 @@
                     <button class="btn btn-sign-in" onclick="window.location.href='{{ route('login') }}'">Sign In</button>
                 </div>
                 <div class="d-lg-flex col-lg-3 justify-content-lg-end">
-                    <button class="btn btn-sign-up">Sign Up</button>
+                    <button class="btn btn-sign-up" onclick="window.location.href='{{ route('signup') }}'">Sign Up</button>
                 </div>
             </ul>
         </div>

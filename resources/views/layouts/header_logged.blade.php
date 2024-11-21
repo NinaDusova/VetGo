@@ -27,7 +27,7 @@
 <!--------navbar--------------------------------->
 <nav class="navbar navbar-expand-lg" aria-label="Tenth navbar example">
     <div class="logo-image">
-        <img src="{{ asset('images/logo.png') }}" alt="logo-image" class="responsive-logo">
+        <img src="{{ asset('images/logo.png') }}" onclick="window.location.href='{{ route('page') }}'" alt="logo-image" class="responsive-logo">
     </div>
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,29 +39,25 @@
 
                 <!-- dropdown------------------------->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown" aria-expanded="false">PROFILE</a>
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">PROFILE</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item active" href="#">My profile</a></li>
-                        <li><a class="dropdown-item" href="#">My pets</a></li>
-                        <li><a class="dropdown-item" href="#">Investigations</a></li>
+                        <li><a class="dropdown-item {{ request()->routeIs('userprofile') ? 'active' : '' }}" href="{{ route('userprofile') }}">My profile</a></li>
+                        <li><a class="dropdown-item {{ request()->routeIs('pets') ? 'active' : '' }}" href="{{ route('pets') }}">My pets</a></li>
+                        <li><a class="dropdown-item {{ request()->routeIs('investigations') ? 'active' : '' }}" href="{{ route('investigations') }}">Investigations</a></li>
                     </ul>
                 </li>
                 <!--------dropdown------------------------>
-
-                <!-- <li class="nav-item">
-                    <a class="nav-link active" href="#">PROFILE</a>
-                </li> -->
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">HOME</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">ABOUT</a>
+                    <a class="nav-link {{ request()->routeIs('page') ? 'active' : '' }}" aria-current="page" href="{{ route('page') }}">HOME</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">SERVICE</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">CONTACTS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link logout" href="{{ route('home') }}">Log Out</a>
                 </li>
 
 

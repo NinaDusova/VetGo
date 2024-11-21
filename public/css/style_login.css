@@ -17,10 +17,6 @@
 }
 
 .centered-rectangle.big-box {
-    /*display: flex;
-    align-items: center;*/
-    /* align-content: center;*/
-    /* justify-content: center;*/
     padding-left: 5rem;
     width: 30rem;
     height: 40rem;
@@ -51,6 +47,7 @@
     flex-direction: column;
 }
 .blue {
+    cursor: pointer;
     background-color: rgba(28, 127, 219, 1);
     border: rgba(28, 127, 219, 1);
     align-items: center;
@@ -94,3 +91,10 @@ h1 {
     cursor: pointer;
 }
 
+h3 {
+    padding-top: 0.5rem;
+    font-size: 1rem;
+    font-family: 'Konkhmer Sleokchher', sans-serif;
+    font-weight: normal;
+    color: black;
+}

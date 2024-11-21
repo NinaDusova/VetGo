@@ -17,8 +17,12 @@
 
 
 <div class="centered-rectangle big-box">
-    <h2>Please enter your details</h2>
-    <h1>Welcome back</h1>
+    <h1>Create your account</h1>
+
+    <h3>Name:</h3>
+    <div class="centered-rectangle small-box">
+        <h2>Enter name and surname</h2>
+    </div>
 
     <h3>Email address:</h3>
     <div class="centered-rectangle small-box">
@@ -30,15 +34,13 @@
         <h2>Enter password</h2>
     </div>
 
-    <h2 class="forgot-password"> Forgot password</h2>
-
-    <div class="centered-rectangle small-box blue">
-        <h2>Sign In</h2>
+    <h3>Repeat password:</h3>
+    <div class="centered-rectangle small-box">
+        <h2>Enter password again</h2>
     </div>
 
-    <div class="account-help">
-        <h2> Don't have an account ?</h2>
-        <h2 class="sign-up">Sign up</h2>
+    <div class="centered-rectangle small-box blue">
+        <h2>Create account</h2>
     </div>
 </div>
 </body>
