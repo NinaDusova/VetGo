@@ -61,7 +61,26 @@ h2 {
     color: rgba(126, 126, 126, 1);
 }
 
+input.h2-like {
+    padding-left: 1rem;
+    font-size: 1rem;
+    font-family: 'Konkhmer Sleokchher', sans-serif;
+    font-weight: normal;
+    color: rgba(126, 126, 126, 1);
+    border: none;
+    outline: none;
+    background: none;
+    width: 100%;
+}
+
 .blue h2 {
+    color: white;
+}
+
+.blue.h2-like {
+    font-size: 1rem;
+    font-family: 'Konkhmer Sleokchher', sans-serif;
+    font-weight: normal;
     color: white;
 }
 

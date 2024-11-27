@@ -17,28 +17,36 @@
 
 
 <div class="centered-rectangle big-box">
-    <h2>Please enter your details</h2>
-    <h1>Welcome back</h1>
+    <form action="{{ route('login.post') }}" method="POST">
+        @csrf
+        <h2>Please enter your details</h2>
+        <h1>Welcome back</h1>
 
-    <h3>Email address:</h3>
-    <div class="centered-rectangle small-box">
-        <h2>Enter email</h2>
-    </div>
+        <h3>Email address:</h3>
+        <div class="centered-rectangle small-box">
+            <label>
+                <input type="email" class="h2-like" placeholder="Enter email" name="email">
+            </label>
+        </div>
 
-    <h3>Password:</h3>
-    <div class="centered-rectangle small-box">
-        <h2>Enter password</h2>
-    </div>
+        <h3>Password:</h3>
+        <div class="centered-rectangle small-box">
+            <label>
+                <input type="password" class="h2-like" placeholder="Enter password" name="password">
+            </label>
+        </div>
 
-    <h2 class="forgot-password"> Forgot password</h2>
 
-    <div class="centered-rectangle small-box blue">
-        <h2>Sign In</h2>
-    </div>
+        <h2 class="forgot-password"> Forgot password</h2>
+
+        <button type="submit" class="centered-rectangle small-box blue h2-like">
+            Sign In
+        </button>
+    </form>
 
     <div class="account-help">
         <h2> Don't have an account ?</h2>
-        <h2 class="sign-up">Sign up</h2>
+        <h2 class="sign-up" onclick="window.location.href='{{ route('signup') }}'">Sign up</h2>
     </div>
 </div>
 </body>

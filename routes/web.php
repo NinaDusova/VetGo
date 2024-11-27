@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\UserController;
@@ -12,8 +13,12 @@ Route::get('/', function () {
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 
-Route::get('/login', [UserController::class, 'login'])->name('login');
-Route::get('/signup', [UserController::class, 'signup'])->name('signup');
+Route::get('/login', [AuthManager::class, 'login'])->name('login');
+Route::post('/login', [AuthManager::class, 'loginPost'])->name('login.post');
+Route::get('/signup', [AuthManager::class, 'signup'])->name('signup');
+Route::post('/signup', [AuthManager::class, 'signupPost'])->name('signup.post');
+Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
+
 Route::get('/page', [UserController::class, 'page'])->name('page');
 Route::get('/userprofile', [UserController::class, 'userprofile'])->name('userprofile');
 Route::get('/edituser', [UserController::class, 'edituser'])->name('edituser');
