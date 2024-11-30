@@ -11,25 +11,43 @@
             <i class="bi bi-person"></i>
         </div>
 
-        <div class="informations">
-            <h2>Name and surname</h2>
-            <div class="box">
-                <h3>Enter name and surname</h3>
-            </div>
+        <form action="{{ route('updateuser') }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="informations">
+                <h2>Name and surname</h2>
+                <div class="box">
+                    <label>
+                        <input type="text" class="h3-like" name="name" value="{{ $user->name }}" placeholder="Enter name and surname">
+                    </label>
+                </div>
 
-            <h2>Phone number</h2>
-            <div class="box">
-                <h3>Enter phone number</h3>
-            </div>
+                <h2>Phone number</h2>
+                <div class="box">
+                    <label>
+                        <input type="text" class="h3-like" name="phone_number" value="{{ $user->phone_number ?? '' }}" placeholder="Enter phone number">
+                    </label>
+                </div>
 
-            <h2>Email address</h2>
-            <div class="box">
-                <h3>Enter email address</h3>
-            </div>
+                <h2>Email address</h2>
+                <div class="box">
+                    <label>
+                        <input type="email" class="h3-like" name="email" value="{{ $user->email }}" placeholder="Enter email">
+                    </label>
+                </div>
 
+                <div class="button">
+                    <button class="btn">Submit</button>
+                </div>
+            </div>
+        </form>
+
+        <form method="POST" action="{{ route('deleteuser') }}">
+            @csrf
+            @method('DELETE')
             <div class="button">
-                <button class="btn">Submit</button>
+                <button class="btn delbtn">Delete account</button>
             </div>
-        </div>
+        </form>
     </div>
 @endsection

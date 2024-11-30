@@ -22,6 +22,8 @@ Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 Route::get('/page', [UserController::class, 'page'])->name('page');
 Route::get('/userprofile', [UserController::class, 'userprofile'])->name('userprofile');
 Route::get('/edituser', [UserController::class, 'edituser'])->name('edituser');
+Route::put('/updateuser', [UserController::class, 'updateuser'])->middleware('auth')->name('updateuser');
+Route::delete('/deleteuser', [UserController::class, 'deleteuser'])->middleware('auth')->name('deleteuser');
 
 Route::get('/petprofile', [PetController::class, 'petprofile'])->name('petprofile');
 Route::get('/pets', [PetController::class, 'pets'])->name('pets');

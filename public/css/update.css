@@ -1,0 +1,14 @@
+.success-message {
+    position: fixed;
+    left: 50%;
+    background-color:rgba(40, 170, 224, 1);
+    border: 10px solid rgba(40, 170, 224, 1);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 18px;
+}
+
+.success-message h2 {
+    color: white;
+}
