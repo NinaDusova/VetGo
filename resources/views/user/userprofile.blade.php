@@ -18,7 +18,11 @@
 
     <div class="menu">
         <div class="image-rectangle">
-            <i class="bi bi-person"></i>
+            @if(Auth::user()->photo)
+                <img src="{{ asset('storage/' . Auth::user()->photo) }}" alt="User Photo" class="user-photo">
+            @else
+                <i class="bi bi-person"></i>
+            @endif
         </div>
 
         <div class="informations-profile">

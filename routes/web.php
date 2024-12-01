@@ -24,6 +24,7 @@ Route::get('/userprofile', [UserController::class, 'userprofile'])->name('userpr
 Route::get('/edituser', [UserController::class, 'edituser'])->name('edituser');
 Route::put('/updateuser', [UserController::class, 'updateuser'])->middleware('auth')->name('updateuser');
 Route::delete('/deleteuser', [UserController::class, 'deleteuser'])->middleware('auth')->name('deleteuser');
+Route::post('/uploadphoto', [UserController::class, 'uploadphoto'])->middleware('auth')->name('uploadphoto');
 
 Route::get('/petprofile', [PetController::class, 'petprofile'])->name('petprofile');
 Route::get('/pets', [PetController::class, 'pets'])->name('pets');

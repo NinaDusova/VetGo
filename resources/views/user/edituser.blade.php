@@ -8,7 +8,17 @@
 @section('content')
     <div class="menu">
         <div class="image-rectangle">
-            <i class="bi bi-person"></i>
+            <form action="{{ route('uploadphoto') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <label for="photo" style="display: block; width: 100%; height: 100%; cursor: pointer;">
+                    @if(Auth::user()->photo)
+                        <img src="{{ asset('storage/' . Auth::user()->photo) }}" alt="User Photo" class="user-photo">
+                    @else
+                        <i class="bi bi-person"></i>
+                    @endif
+                </label>
+                <input type="file" name="photo" id="photo" accept="image/*" style="display: none;" onchange="this.form.submit();">
+            </form>
         </div>
 
         <form action="{{ route('updateuser') }}" method="POST">
