@@ -30,4 +30,5 @@ Route::get('/petprofile', [PetController::class, 'petprofile'])->name('petprofil
 Route::get('/pets', [PetController::class, 'pets'])->name('pets');
 Route::get('/investigations', [PetController::class, 'investigations'])->name('investigations');
 Route::get('/petedit', [PetController::class, 'petedit'])->name('petedit');
+Route::post('/savepet', [PetController::class, 'savepet'])->name('savepet');
 

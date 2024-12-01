@@ -9,11 +9,22 @@
 @section('content')
     <div>
         @if(session()->has('success'))
-            <div class="success-message">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <h2>{{session('success')}}</h2>
             </div>
         @endif
     </div>
+{{--    <div>--}}
+{{--        @if(session()->has('success'))--}}
+{{--            <div class="success-message">--}}
+{{--                <h2>{{session('success')}}</h2>--}}
+{{--            </div>--}}
+{{--        @endif--}}
+{{--    </div>--}}
+
+{{--    <div class="alert alert-warning" role="alert">--}}
+{{--        This is a warning alert—check it out!--}}
+{{--    </div>--}}
 
 
     <div class="menu">

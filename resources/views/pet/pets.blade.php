@@ -7,6 +7,27 @@
 
 @section('content')
 
+    <!--TEMP -->
+{{--    <h1>Your Pets</h1>--}}
+
+{{--    @if($pets->isEmpty())--}}
+{{--        <p>You don't have any pets yet!</p>--}}
+{{--    @else--}}
+{{--        <ul>--}}
+{{--            @foreach ($pets as $pet)--}}
+{{--                <li>--}}
+{{--                    <strong>Species:</strong> {{ $pet->species }} <br>--}}
+{{--                    <strong>Gender:</strong> {{ $pet->gender }} <br>--}}
+{{--                    <strong>Breed:</strong> {{ $pet->breed }} <br>--}}
+{{--                    <strong>Weight:</strong> {{ $pet->weight }} kg <br>--}}
+{{--                    <strong>Chip/Passport:</strong> {{ $pet->chip}} <br>--}}
+{{--                    <hr>--}}
+{{--                </li>--}}
+{{--            @endforeach--}}
+{{--        </ul>--}}
+{{--    @endif--}}
+    <!--TEMP -->
+
     <h2 class="pet-page-title">MY PETS</h2>
     <div class="circle-container">
         <div class="circle pet-page" onclick="window.location.href='{{ route('petprofile') }}'">
