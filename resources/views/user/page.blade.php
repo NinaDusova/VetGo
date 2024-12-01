@@ -13,7 +13,7 @@
         </div>
 
         <div class="right-content-page">
-            <h3>Welcome back, <span id="user-name" class="highlight-name">[THE NAME OF THE USER]</span></h3>
+            <h3>Welcome back, <span id="user-name" class="highlight-name">{{ $userName }}</span></h3>
 
             <h2 class="healthcare-title">Healthcare of pets:</h2>
 

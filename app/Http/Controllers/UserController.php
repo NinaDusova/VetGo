@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -16,7 +17,8 @@ class UserController extends Controller
 
     public function page()
     {
-        return view('user.page');
+        $userName = Auth::user()->name;
+        return view('user.page',  compact('userName'));
     }
 
     public function edituser()
@@ -48,5 +50,25 @@ class UserController extends Controller
         $user = Auth::user();
         $user->delete();
         return redirect()->route('home')->with('success', 'Account was deleted');
+    }
+
+    public function uploadphoto(Request $request) {
+
+        $request->validate([
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $user = Auth::user();
+
+        if ($request->hasFile('photo')) {
+            if ($user->photo) {
+                Storage::disk('public')->delete($user->photo);
+            }
+
+            $path = $request->file('photo')->store('photos', 'public');
+            $user->photo = $path;
+            $user->save();
+        }
+        return redirect()->back()->with('success', 'Photo updated successfully.');
     }
 }
