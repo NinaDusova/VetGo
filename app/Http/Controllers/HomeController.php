@@ -15,4 +15,9 @@ class HomeController extends Controller
     {
         return view('home.about');
     }
+
+    public function puzzle()
+    {
+        return view('home.puzzle');
+    }
 }

@@ -44,7 +44,7 @@
                     <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">ABOUT</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">SERVICE</a>
+                    <a class="nav-link" href="{{ route('puzzle') }}">SERVICE</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">CONTACTS</a>

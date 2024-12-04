@@ -51,7 +51,7 @@
                     <a class="nav-link {{ request()->routeIs('page') ? 'active' : '' }}" aria-current="page" href="{{ route('page') }}">HOME</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">SERVICE</a>
+                    <a class="nav-link" href="{{ route('puzzle') }}">SERVICE</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">CONTACTS</a>
