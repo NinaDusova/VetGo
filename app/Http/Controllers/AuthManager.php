@@ -39,8 +39,12 @@ class AuthManager extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|unique:users|email:rfc,dns|max:255',
             'password' => 'required'
+        ], [
+            'email.required' => 'Email address is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.max' => 'Email address must not exceed 255 characters.',
         ]);
 
         $data['name'] = $request->name;

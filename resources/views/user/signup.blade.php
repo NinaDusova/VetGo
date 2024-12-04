@@ -15,6 +15,15 @@
     <h1>VETGO</h1>
 </div>
 
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 <div class="centered-rectangle big-box">
     <form action="{{ route('signup.post') }}" method="POST">

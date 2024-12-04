@@ -12,6 +12,7 @@ Route::get('/', function () {
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/puzzle', [HomeController::class, 'puzzle'])->name('puzzle');
 
 Route::get('/login', [AuthManager::class, 'login'])->name('login');
 Route::post('/login', [AuthManager::class, 'loginPost'])->name('login.post');
@@ -29,6 +30,9 @@ Route::post('/uploadphoto', [UserController::class, 'uploadphoto'])->middleware(
 Route::get('/petprofile', [PetController::class, 'petprofile'])->name('petprofile');
 Route::get('/pets', [PetController::class, 'pets'])->name('pets');
 Route::get('/investigations', [PetController::class, 'investigations'])->name('investigations');
-Route::get('/petedit', [PetController::class, 'petedit'])->name('petedit');
+Route::get('/pet/edit/{id?}', [PetController::class, 'petedit'])->name('petedit');
+Route::put('/pet/update/{id?}', [PetController::class, 'petupdate'])->name('petupdate');
 Route::post('/savepet', [PetController::class, 'savepet'])->name('savepet');
+Route::get('/pet/{id}', [PetController::class, 'show'])->name('petprofile');
+Route::delete('/pet/delete/{id}', [PetController::class, 'deletepet'])->name('deletepet');
 

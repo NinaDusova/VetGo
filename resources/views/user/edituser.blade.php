@@ -6,6 +6,17 @@
 @stop
 
 @section('content')
+
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="menu">
         <div class="image-rectangle">
             <form action="{{ route('uploadphoto') }}" method="POST" enctype="multipart/form-data">
@@ -52,7 +63,7 @@
             </div>
         </form>
 
-        <form method="POST" action="{{ route('deleteuser') }}">
+        <form method="POST" action="{{ route('deleteuser') }}" onsubmit="return confirm('Are you sure you want to delete your account?');">
             @csrf
             @method('DELETE')
             <div class="button">

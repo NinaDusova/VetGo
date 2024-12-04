@@ -35,8 +35,13 @@ class UserController extends Controller
 
         $request->validate([
            'name' => 'required|string|max:255',
-           'email' => 'required|email|max:255',
-           'phone_number' => 'nullable|string|max:255',
+           'email' => 'required|email:rfc,dns|max:255',
+            'phone_number' => ['nullable', 'regex:/^\+?[0-9]{7,15}$/'],
+        ], [
+            'email.required' => 'Email address is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.max' => 'Email address must not exceed 255 characters.',
+            'phone_number.regex' => 'Phone number must contain only numbers and may start with "+".',
         ]);
 
         $user-> update([
@@ -64,13 +69,13 @@ class UserController extends Controller
 
         if ($request->hasFile('photo')) {
             if (!empty($user->photo)) {
-                if ($user->photo) Storage::disk('public')->delete($user->photo);
-
-
-                $path = $request->file('photo')->store('photos', 'public');
-                $user->photo = $path;
-                $user->save();
+               // if ($user->photo) Storage::disk('public')->delete($user->photo);
+                Storage::disk('public')->delete($user->photo);
             }
+
+            $path = $request->file('photo')->store('photos', 'public');
+            $user->photo = $path;
+            $user->save();
         }
         return redirect()->back()->with('success', 'Photo updated successfully.');
     }

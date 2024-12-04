@@ -57,6 +57,9 @@
                     <a class="nav-link" href="#">CONTACTS</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('puzzle') }}">GAME</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link logout" href="{{ route('home') }}">Log Out</a>
                 </li>
 

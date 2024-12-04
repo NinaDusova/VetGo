@@ -49,6 +49,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">CONTACTS</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('puzzle') }}">GAME</a>
+                </li>
                 <div class="d-lg-flex col-lg-3 justify-content-lg-end">
                     <button class="btn btn-sign-in" onclick="window.location.href='{{ route('login') }}'">Sign In</button>
                 </div>

@@ -6,80 +6,93 @@
 @stop
 
 @section('content')
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="menu">
         <div class="image-rectangle">
             <i class="bi bi-camera"></i>
         </div>
         <div class="informations">
-            <form action="{{route('savepet')}}" method="POST">
+            <form action="{{ $pet ? route('petupdate', $pet->id) : route('savepet')}}" method="POST">
                 @csrf
 
-            <h2>Species</h2>
-            <div class="box">
-                <label>
-                    <input type="text" class="h3-like" name="species" placeholder="Enter a type of species" required>
-                </label>
-            </div>
+                @if($pet)
+                    @method('PUT')
+                @endif
 
-           <h2>Gender</h2>
-            <div class="box">
-{{--                <label>--}}
-{{--                    <input type="text" class="h3-like" name="gender" placeholder="Enter a type of species" required>--}}
-{{--                </label>--}}
-                <label>
-                    <select  name="gender" class="h3-like" style="" required>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                </label><br><br>
-            </div>
+                <h2>Species</h2>
+                <div class="box">
+                    <label>
+                        <input type="text" class="h3-like" name="species" placeholder="Enter a type of species" value="{{ old('species', $pet->species ?? '') }}" required>
+                    </label>
+                </div>
 
-            <h2>Date of brith</h2>
-            <div class="box">
-                <label for="birthdate"></label><input type="date" name="birth_day" id="birthdate" class="no-border" required/>
-            </div>
+                <h2>Gender</h2>
+                <div class="box">
+                    <label>
+                        <select  name="gender" class="h3-like" style="" required>
+                            <option value="male" {{ old('gender', $pet->gender ?? '') == 'male' ? 'selected' : '' }}>Male</option>
+                            <option value="female" {{ old('gender', $pet->gender ?? '') == 'female' ? 'selected' : '' }}>Female</option>
+                        </select>
+                    </label><br><br>
+                </div>
 
-            <h2>Neutered</h2>
-            <div class="box">
-               <!-- <h3>Enter if pet neutered</h3> -->
-{{--                <label>--}}
-{{--                    <select  name="neutered" class="h3-like" style="" required>--}}
-{{--                        <option value="no">No</option>--}}
-{{--                        <option value="yes">Yes</option>--}}
-{{--                    </select>--}}
-{{--                </label><br><br>--}}
+                <h2>Date of brith</h2>
+                <div class="box">
+                    <label for="birthdate" >
+                        <input type="date" name="birth_day" id="birthdate" class="no-border" value="{{ old('birth_day', $pet->birth_day ?? '') }}"  required/>
+                    </label>
+                </div>
 
-                <input type="hidden" name="neutered" value="0">
-                <label>
-                    <input type="checkbox" name="neutered" value="1"><br><br>
-                </label>
-            </div>
+                <h2>Neutered</h2>
+                <div class="box">
+                    <input type="hidden" name="neutered" value="0" >
+                    <label>
+                        <input type="checkbox" name="neutered" value="1" {{ old('neutered', $pet->neutered ?? 0) ? 'checked' : '' }}><br><br>
+                    </label>
+                </div>
 
-            <h2>Chip/pet passport</h2>
-            <div class="box">
-                <label>
-                    <input type="text" class="h3-like" name="chip" placeholder="Enter a chip of pet" required>
-                </label>
-            </div>
+                <h2>Chip/pet passport</h2>
+                <div class="box">
+                    <label>
+                        <input type="text" class="h3-like" name="chip" placeholder="Enter a chip of pet" value="{{ old('chip', $pet->chip ?? '') }}" required>
+                    </label>
+                </div>
 
-            <h2>Breed</h2>
-            <div class="box">
-                <label>
-                    <input type="text" class="h3-like" name="breed" placeholder="Enter breed of pet" required>
-                </label>
-            </div>
+                <h2>Breed</h2>
+                <div class="box">
+                    <label>
+                        <input type="text" class="h3-like" name="breed" placeholder="Enter breed of pet" value="{{ old('breed', $pet->breed ?? '') }}" required>
+                    </label>
+                </div>
 
-            <h2>Weight</h2>
-            <div class="box">
-                <label>
-                    <input type="number" class="h3-like" name="weight" placeholder="Enter pet weight" required>
-                </label>
-            </div>
+                <h2>Weight</h2>
+                <div class="box">
+                    <label>
+                        <input type="number" class="h3-like" name="weight" placeholder="Enter pet weight" value="{{ old('weight', $pet->weight ?? '') }}" required>
+                    </label>
+                </div>
 
-            <div class="button">
-                <button type="submit" class="btn">Submit</button>
-            </div>
+                <div class="button">
+                    <button type="submit" class="btn">{{ $pet ? 'Update' : 'Submit' }}</button>
+                </div>
             </form>
         </div>
     </div>
+
+    <form method="POST" action="{{ route('deletepet', $pet->id) }}" onsubmit="return confirm('Are you sure you want to delete this pet?');">
+        @csrf
+        @method('DELETE')
+        <div class="button">
+            <button class="btn delbtn">Delete account</button>
+        </div>
+    </form>
 @endsection
