@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -49,6 +50,25 @@ class UserController extends Controller
             'phone_number' => $request->input('phone_number'),
             'email' => $request->input('email'),
         ]);
+
+        //TODO kontrola na serveri
+        if (!empty($user->id)) {
+            if ($doctor = Doctor::where('user_id', $user->id)->first()) {
+                $request->validate([
+                    'license_number' => 'required|string|max:255',
+                    'ordination' => 'required|string|max:255',
+                ], [
+                    'license_number.required' => 'License number is required.',
+                    'ordination.required' => 'Ordination is required.',
+                ]);
+
+                $doctor->update([
+                    'license_number' => $request->license_number,
+                    'ordination' => $request->ordination,
+                ]);
+                return redirect()->route('doctorprofile')->with('success', 'Infos were successfully updated!');
+            }
+        }
 
         return redirect()->route('userprofile')->with('success', 'Infos were successfully updated!');
     }

@@ -8,10 +8,16 @@
 @section('content')
     <div class="menu">
         <div class="image-rectangle">
-            <i class="bi bi-camera"></i>
+            @if($pet->photo)
+                <img src="{{ asset('storage/' . $pet->photo) }}" alt="Pet Photo" class="user-photo">
+            @else
+                <i class="bi bi-camera"></i>
+            @endif
         </div>
 
         <div class="informations-profile">
+            <h2>Name: {{ $pet->name }}</h2>
+
             <h2>Spieces: {{ $pet->species }}</h2>
 
             <h2>Gender: {{ $pet->gender }}</h2>

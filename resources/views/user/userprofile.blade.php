@@ -42,10 +42,15 @@
             <h2>Phone number: {{ $user->phone_number ?? 'Not provided' }}</h2>
 
             <h2>Email address: {{ $user->email ?? 'Not provided'}}</h2>
+
+            @if(isset($doctor))
+                <h2>Licence: {{ $doctor->license_number ?? 'Not provided' }}</h2>
+                <h2>Ordination: {{ $doctor->ordination ?? 'Not provided'}}</h2>
+            @endif
         </div>
 
         <div class="button-edit">
-            <i class="bi bi-pencil-square" onclick="window.location.href='{{ route('edituser') }}'"></i>
+            <i class="bi bi-pencil-square" onclick="window.location.href='{{ isset($doctor) ? route('doctoredit') : route('edituser') }}'"></i>
         </div>
 
     </div>

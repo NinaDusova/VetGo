@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('spieces');
             $table->date('dat_of_birth')->nullable();
             $table->boolean('neutered')->default(false);
-            $table->string('chip_or_passport')->nullable();
+            $table->string('chip')->nullable();
             $table->string('breed')->nullable();
             $table->float('weight')->nullable();
             $table->timestamps();
