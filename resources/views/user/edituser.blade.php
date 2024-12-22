@@ -57,6 +57,22 @@
                     </label>
                 </div>
 
+                @if(isset($doctor))
+                <h2>Licence</h2>
+                <div class="box">
+                    <label>
+                        <input type="text" class="h3-like" name="license_number" value="{{ $doctor->license_number }}" placeholder="Enter license number">
+                    </label>
+                </div>
+
+                <h2>Ordination</h2>
+                <div class="box">
+                    <label>
+                        <input type="text" class="h3-like" name="ordination" value="{{ $doctor->ordination }}" placeholder="Enter ordination">
+                    </label>
+                </div>
+                @endif
+
                 <div class="button">
                     <button class="btn">Submit</button>
                 </div>

@@ -17,9 +17,21 @@
     @endif
 
     <div class="menu">
-        <div class="image-rectangle">
-            <i class="bi bi-camera"></i>
-        </div>
+            <div class="image-rectangle">
+                <form action="{{ route('uploadtempphoto') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <label for="photo" style="display: block; width: 100%; height: 100%; cursor: pointer;">
+                        @if(session('temp_photo'))
+                            <img src="{{ asset('storage/' . session('temp_photo')) }}" alt="Temporary Photo" class="user-photo">
+                        @elseif(isset($pet) && $pet->photo)
+                            <img src="{{ asset('storage/' . $pet->photo) }}" alt="Pet Photo" class="user-photo">
+                        @else
+                            <i class="bi bi-camera"></i>
+                        @endif
+                    </label>
+                    <input type="file" name="photo" id="photo" accept="image/*" style="display: none;" onchange="this.form.submit();">
+                </form>
+            </div>
         <div class="informations">
             <form action="{{ $pet ? route('petupdate', $pet->id) : route('savepet')}}" method="POST">
                 @csrf
@@ -27,6 +39,13 @@
                 @if($pet)
                     @method('PUT')
                 @endif
+
+                <h2>Name</h2>
+                <div class="box">
+                    <label>
+                        <input type="text" class="h3-like" name="name" placeholder="Enter name" value="{{ old('name', $pet->name ?? '') }}" required>
+                    </label>
+                </div>
 
                 <h2>Species</h2>
                 <div class="box">
@@ -88,6 +107,7 @@
         </div>
     </div>
 
+    @if(isset($pet))
     <form method="POST" action="{{ route('deletepet', $pet->id) }}" onsubmit="return confirm('Are you sure you want to delete this pet?');">
         @csrf
         @method('DELETE')
@@ -95,4 +115,5 @@
             <button class="btn delbtn">Delete account</button>
         </div>
     </form>
+    @endif
 @endsection

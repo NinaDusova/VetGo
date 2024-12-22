@@ -12,18 +12,26 @@ class Pet extends Model
     protected $table = "pets";
 
     protected $fillable = [
-      'species',
-      'gender',
-      'birth_day',
-      'neutered',
-      'chip',
-      'breed',
-      'weight',
-      'user_id',
+        'name',
+        'species',
+        'gender',
+        'birth_day',
+        'neutered',
+        'chip',
+        'breed',
+        'weight',
+        'user_id',
+        'photo',
+        'doctor_id'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class);
     }
 }

@@ -26,40 +26,26 @@
 @endif
 
 <div class="centered-rectangle big-box">
-    <form action="{{ route('signup.post') }}" method="POST">
+    <form action="{{ route('doctorinfo.post') }}" method="POST">
         @csrf
         <h1>Create your account</h1>
 
-        <h3>Name:</h3>
+        <h3>License number:</h3>
         <div class="centered-rectangle small-box">
             <label>
-                <input type="text" class="h2-like" placeholder="Enter name a surname" name="name">
+                <input type="text" class="h2-like" placeholder="Enter license number" name="license_number">
             </label>
         </div>
 
-        <h3>Email address:</h3>
+        <h3>Ordination:</h3>
         <div class="centered-rectangle small-box">
             <label>
-                <input type="email" class="h2-like" placeholder="Enter email" name="email">
-            </label>
-        </div>
-
-        <h3>Password:</h3>
-            <div class="centered-rectangle small-box">
-            <label>
-                <input type="password" class="h2-like" placeholder="Enter password" name="password">
-            </label>
-        </div>
-
-        <div class="checkbox-container">
-            <label>
-                <input type="checkbox" name="is_doctor" value="1">
-                I want to register as a doctor
+                <input type="text" class="h2-like" placeholder="Enter ordination" name="ordination">
             </label>
         </div>
 
         <button type="submit" class="centered-rectangle small-box blue h2-like">
-            Create account
+            Submit
         </button>
     </form>
 </div>
