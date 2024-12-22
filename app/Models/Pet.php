@@ -20,6 +20,7 @@ class Pet extends Model
       'breed',
       'weight',
       'user_id',
+      'photo',
     ];
 
     public function user()

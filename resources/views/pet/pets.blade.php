@@ -11,7 +11,9 @@
         <div class="circle-wrapper">
             @foreach($pets as $pet)
                 <div class="circle pet-page" onclick="window.location.href='{{ route('petprofile', ['id' => $pet->id]) }}'">
-                    {{-- <img src="{{ $pet->image_url }}" alt="{{ $pet->name }}"> --}}
+                    @if($pet->photo)
+                     <img src="{{ asset('storage/' . $pet->photo) }}" alt="{{ $pet->name }}">
+                    @endif
                 </div>
             @endforeach
             <div class="circle pet-page" onclick="window.location.href='{{ route('petedit') }}'">

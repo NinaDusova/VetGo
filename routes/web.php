@@ -33,6 +33,7 @@ Route::get('/investigations', [PetController::class, 'investigations'])->name('i
 Route::get('/pet/edit/{id?}', [PetController::class, 'petedit'])->name('petedit');
 Route::put('/pet/update/{id?}', [PetController::class, 'petupdate'])->name('petupdate');
 Route::post('/savepet', [PetController::class, 'savepet'])->name('savepet');
+Route::post('/uploadphotopet/{id}', [PetController::class, 'uploadphotopet'])->name('uploadphotopet');
 Route::get('/pet/{id}', [PetController::class, 'show'])->name('petprofile');
 Route::delete('/pet/delete/{id}', [PetController::class, 'deletepet'])->name('deletepet');
 

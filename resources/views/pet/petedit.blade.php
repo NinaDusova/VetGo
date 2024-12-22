@@ -18,7 +18,17 @@
 
     <div class="menu">
         <div class="image-rectangle">
-            <i class="bi bi-camera"></i>
+            <form action="{{ route('uploadphotopet', $pet->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <label for="photo" style="display: block; width: 100%; height: 100%; cursor: pointer;">
+                    @if($pet->photo)
+                        <img src="{{ asset('storage/' . $pet->photo) }}" alt="User Photo" class="pet-photo">
+                    @else
+                        <i class="bi bi-camera"></i>
+                    @endif
+                </label>
+                <input type="file" name="photo" id="photo" accept="image/*" style="display: none;" onchange="this.form.submit();">
+            </form>
         </div>
         <div class="informations">
             <form action="{{ $pet ? route('petupdate', $pet->id) : route('savepet')}}" method="POST">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PetController extends Controller
 {
@@ -126,4 +127,22 @@ class PetController extends Controller
         return redirect()->route('pets')->with('success', 'Pet deleted successfully!');
     }
 
+    public function uploadphotopet(Request $request, $id) {
+        $request->validate([
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('photo')) {
+            $pet = Pet::findOrFail($id);
+
+            if (!empty($user->photo)) {
+                Storage::disk('public')->delete($user->photo);
+            }
+
+            $path = $request->file('photo')->store('photos', 'public');
+            $pet->photo = $path;
+            $pet->save();
+        }
+        return redirect()->route('petedit', $pet->id)->with('success', 'Pet profile updated successfully!');
+    }
 }
