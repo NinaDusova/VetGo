@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Investigation;
 use App\Models\Pet;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -26,13 +27,25 @@ class PetController extends Controller
 
     public function investigations(): Factory|View|Application
     {
-        $user = Auth::user();
+       /* $user = Auth::user();
 
         if (!empty($user->pets)) {
             $pets = $user->pets;
             return view('pet.investigations', ['pets' => $pets]);
         }
-        return redirect('page');
+        return redirect('page');*/
+        $user = auth()->user();
+
+        $pets = Pet::with('investigations')
+            ->where('user_id', $user->id)
+            ->get();
+
+        $investigations = Investigation::with(['doctor.user'])
+            ->whereIn('pet_id', $pets->pluck('id'))
+            ->get();
+
+        return view('pet.investigations', compact('pets', 'investigations'));
+
     }
 
     public function petprofile(): Factory|View|Application

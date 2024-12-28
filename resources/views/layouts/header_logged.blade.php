@@ -43,7 +43,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item {{ request()->routeIs('userprofile') ? 'active' : '' }}" href="{{ isset($doctor) ? route('doctorprofile') : route('userprofile') }}">My profile</a></li>
                         <li><a class="dropdown-item {{ request()->routeIs('pets') ? 'active' : '' }}" href="{{isset($doctor) ? route('petclients') : route('pets') }}">{{ isset($doctor) ? 'Pet clients' : 'My pets' }}</a></li>
-                        <li><a class="dropdown-item {{ request()->routeIs('investigations') ? 'active' : '' }}" href="{{ route('investigations') }}">Investigations</a></li>
+                        <li><a class="dropdown-item {{ request()->routeIs('investigations') ? 'active' : '' }}" href="{{isset($doctor) ? route('doctor.investigations') :  route('investigations') }}">Investigations</a></li>
                     </ul>
                 </li>
                 <!--------dropdown------------------------>

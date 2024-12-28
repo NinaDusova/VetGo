@@ -55,4 +55,10 @@ class Doctor extends Model
     {
         return $this->hasMany(Pet::class);
     }
+
+    public function investigations(): HasMany
+    {
+        return $this->hasMany(Investigation::class);
+    }
+
 }

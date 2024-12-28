@@ -2,54 +2,52 @@
 
 @section('header')
     <link href="{{ asset('css/style_investi.css') }}?v={{ time() }}" rel="stylesheet">
-
+    <script src="{{ asset('js/investigations_script.js') }}" defer></script>
 @stop
 
 @section('content')
-<div class="circle-container">
-    <div class="circle-wrapper">
-        @foreach($pets as $pet)
-            <div class="circle">
-                @if($pet->photo)
-                    <img src="{{ asset('storage/' . $pet->photo) }}" alt="{{ $pet->name }}">
-                @endif
+    <div class="circle-container">
+        <div class="circle-wrapper">
+            @foreach($pets as $key => $pet)
+                <div class="circle">
+                    @if($pet->photo)
+                        <img src="{{ asset('storage/' . $pet->photo) }}" alt="{{ $pet->name }}">
+                    @else
+                        <i class="bi bi-camera"></i>
+                    @endif
+                </div>
+            @endforeach
+            <div class="circle" onclick="window.location.href='{{ route('petedit') }}'">
+                <i class="bi bi-plus"></i>
             </div>
-        @endforeach
-        <div class="circle" onclick="window.location.href='{{ route('petedit') }}'">
-            <i class="bi bi-plus"></i>
         </div>
     </div>
-</div>
 
     <div class="container">
-        <div class="date-container">
-            <h2>07.07.2024</h2>
-            <h2>18.06.2024</h2>
-            <h2>10.05.2024</h2>
-        </div>
+        @foreach($pets as $key => $pet)
+            <div class="investigation-container" id="investigations-pet-{{ $key }}" style="display: {{ $key === 0 ? 'block' : 'none' }}">
+                @foreach($pet->investigations->sortByDesc('date') as $investigation)
+                    <div class="information">
+                        <div class="date-container">
+                            <h2>{{ \Carbon\Carbon::parse($investigation->date)->format('d.m.Y') }}</h2>
+                        </div>
 
-        <div class="small-circles">
-            <div class="small-circle"><i class="bi bi-clipboard2-pulse"></i></div>
-            <div class="small-circle"><i class="bi bi-capsule"></i></div>
-            <div class="small-circle"><i class="bi bi-clipboard2-pulse"></i></div>
-        </div>
+                        <div class="small-circles">
+                            <!--  <div class="small-circle"><i class="bi bi-clipboard2-pulse"></i></div> -->
+                            <!-- Zakomentovaný kruh s liekom -->
+                            <!-- <div class="small-circle"><i class="bi bi-capsule"></i></div> -->
+                            <div class="small-circle"><i class="bi bi-clipboard2-pulse"></i></div>
+                        </div>
 
-        <div class="name-container">
-            <div class="text">
-                <h3>MUDR. VIERA VÝCHODNÁ S.R.O - KOŠICE</h3>
-                <h3>VIERA VYCHODNÁ</h3>
+                        <div class="name-container">
+                            <div class="text">
+                                <h3>MUDR. {{ $investigation->doctor->user->name }} {{ $investigation->doctor->ordination }}</h3>
+                                <h3>{{ $investigation->doctor->user->name }} </h3>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-
-            <div class="text-dif">
-                <h3>VYBRATÝ 20.6.2022</h3>
-                <h3>CANIVERM FORTE</h3>
-                <h3>CENA PRODUKTU: 7.48€</h3>
-            </div>
-
-            <div class="text">
-                <h3>MUDR. VIERA VÝCHODNÁ S.R.O - KOŠICE</h3>
-                <h3>VIERA VYCHODNÁ</h3>
-            </div>
-        </div>
+        @endforeach
     </div>
 @endsection

@@ -6,8 +6,17 @@
 @stop
 
 @section('content')
-    <div class="container">
+    <div class="container-r">
         <h2>Pets under your care</h2>
+
+        <form method="GET" action="{{ route('search') }}" class="mb-3 d-flex">
+            <input type="text" name="search" class="form-control" placeholder="Search by name or chip ID" value="{{ request()->input('search') }}">
+            <button type="submit" class="btn btn-primary ml-2">Search</button>
+        </form>
+
+        <div class="add-pet-button">
+            <button onclick="window.location.href='{{ route('addpet') }}'" class="btn">Add Pet</button>
+        </div>
 
         <div class="table-container">
             <table class="table">
@@ -50,10 +59,6 @@
                 @endforeach
                 </tbody>
             </table>
-        </div>
-
-        <div class="add-pet-button">
-            <button onclick="window.location.href='{{ route('addpet') }}'" class="btn">Add Pet</button>
         </div>
     </div>
 @endsection

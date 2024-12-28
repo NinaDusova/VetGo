@@ -2,11 +2,16 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $user_id
@@ -17,31 +22,31 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $chip
  * @property string|null $breed
  * @property float|null $weight
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
  * @property string|null $photo
  * @property string $gender
  * @property int|null $doctor_id
- * @property-read \App\Models\Doctor|null $doctor
- * @property-read \App\Models\User $user
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet whereBirthDay($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet whereBreed($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet whereChip($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet whereDoctorId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet whereGender($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet whereNeutered($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet wherePhoto($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet whereSpecies($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet whereUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Pet whereWeight($value)
- * @mixin \Eloquent
+ * @property-read Doctor|null $doctor
+ * @property-read User $user
+ * @method static Builder<static>|Pet newModelQuery()
+ * @method static Builder<static>|Pet newQuery()
+ * @method static Builder<static>|Pet query()
+ * @method static Builder<static>|Pet whereBirthDay($value)
+ * @method static Builder<static>|Pet whereBreed($value)
+ * @method static Builder<static>|Pet whereChip($value)
+ * @method static Builder<static>|Pet whereCreatedAt($value)
+ * @method static Builder<static>|Pet whereDoctorId($value)
+ * @method static Builder<static>|Pet whereGender($value)
+ * @method static Builder<static>|Pet whereId($value)
+ * @method static Builder<static>|Pet whereName($value)
+ * @method static Builder<static>|Pet whereNeutered($value)
+ * @method static Builder<static>|Pet wherePhoto($value)
+ * @method static Builder<static>|Pet whereSpecies($value)
+ * @method static Builder<static>|Pet whereUpdatedAt($value)
+ * @method static Builder<static>|Pet whereUserId($value)
+ * @method static Builder<static>|Pet whereWeight($value)
+ * @mixin Eloquent
  */
 class Pet extends Model
 {
@@ -63,13 +68,19 @@ class Pet extends Model
         'doctor_id'
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function doctor()
+    public function doctor(): BelongsTo
     {
         return $this->belongsTo(Doctor::class);
     }
+
+    public function investigations(): HasMany
+    {
+        return $this->hasMany(Investigation::class);
+    }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
+use App\Models\Investigation;
 use App\Models\Pet;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
@@ -23,6 +24,13 @@ class DoctorController extends Controller
         }
 
         return view('user.userprofile', compact('user', 'doctor'));
+    }
+
+    public function investigations(): Factory|View|Application
+    {
+        $doctor = Doctor::where('user_id', Auth::id())->first();
+        $investigations = $doctor->investigations()->orderBy('date', 'desc')->get();
+        return view('doctor.docinvestigations', compact('investigations', 'doctor'));
     }
 
     public function edit(): Factory|View|Application
@@ -203,5 +211,53 @@ class DoctorController extends Controller
 
         return redirect()->route('petclients', 'doctor')->with('success', 'Pet updated successfully.');
     }
+
+    public function index(Request $request)
+    {
+
+        $doctor = Doctor::where('user_id', Auth::id())->first();
+        $query = Pet::where('doctor_id',  $doctor->id);
+
+        if ($request->has('search') && $request->input('search') != '') {
+            $search = $request->input('search');
+            $query->where('name', 'like', "%$search%")
+                ->orWhere('chip', 'like', "%$search%")
+                ->orWhere('species', 'like', "%$search%")
+                ->orWhere('gender', 'like', "%$search%")
+                ->orWhere('breed', 'like', "%$search%");
+        }
+
+        $pets = $query->get();
+
+        return view('doctor.petclients', compact('pets', 'doctor'));
+    }
+
+    public function search_inv(Request $request)
+    {
+
+        $doctor = Doctor::where('user_id', Auth::id())->first();
+        $query = Pet::where('doctor_id',  $doctor->id);
+
+        if ($request->has('search') && $request->input('search') != '') {
+            $search = $request->input('search');
+            $query->where('name', 'like', "%$search%")
+                ->orWhere('chip', 'like', "%$search%")
+                ->orWhere('species', 'like', "%$search%")
+                ->orWhere('gender', 'like', "%$search%")
+                ->orWhere('breed', 'like', "%$search%");
+        }
+
+        $pets = $query->get();
+
+        if ($pets->isNotEmpty()) {
+            $investigations = Investigation::whereIn('pet_id', $pets->pluck('id'))
+                ->orderBy('date', 'desc')
+                ->get();
+        } else {
+            $investigations = $doctor->investigations()->orderBy('date', 'desc')->get();
+        }
+        return view('doctor.docinvestigations', compact('investigations', 'doctor'));
+    }
+
 
 }

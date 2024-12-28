@@ -24,7 +24,7 @@
                 <button class="btn">PET CLIENTS</button>
             </div>
 
-            <div class="button-container-page" onclick="window.location.href='{{ route('investigations') }}'">
+            <div class="button-container-page" onclick="window.location.href='{{ route('doctor.investigations') }}'">
                 <button class="btn">INVESTIGATIONS</button>
             </div>
         </div>
