@@ -68,6 +68,17 @@
     color: white;
 }
 
+.circle-wrapper .circle {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.circle.moving {
+    position: relative;
+    z-index: 10; /* Aby bolo presúvané na vrch */
+    transform: scale(0.8);
+    opacity: 0.8;
+}
+
 .name-container {
     display: flex;
     flex-direction: column;
@@ -75,6 +86,18 @@
     padding-top: 4vh;
     gap: 9vh;
 }
+
+.information {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.information.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 h2 {
     font-size: 1.5vw;

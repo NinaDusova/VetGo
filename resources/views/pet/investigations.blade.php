@@ -2,7 +2,8 @@
 
 @section('header')
     <link href="{{ asset('css/style_investi.css') }}?v={{ time() }}" rel="stylesheet">
-    <script src="{{ asset('js/investigations_script.js') }}" defer></script>
+    <script src="{{ asset('js/investigations_script.js') }}?v={{ time() }}" defer></script>
+
 @stop
 
 @section('content')
