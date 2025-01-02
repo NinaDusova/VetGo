@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthManager;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvestigationController;
@@ -63,3 +64,10 @@ Route::get('/add-investigation', [InvestigationController::class, 'create'])->na
 Route::get('/investigations/{id}/edit', [InvestigationController::class, 'edit'])->name('edit_investigation');
 Route::delete('/investigations/{id}', [InvestigationController::class, 'destroy'])->name('delete_investigation');
 Route::put('/investigations/{id}', [InvestigationController::class, 'update'])->name('update_investigation');
+
+Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
+Route::get('/chat/messages/{doctorId}', [ChatController::class, 'getMessages']);
+Route::post('/chat/send', [ChatController::class, 'sendMessage']);
+Route::get('/chat/prev', [ChatController::class, 'prev'])->name('chat.prev');
+Route::post('/chat/store', [ChatController::class, 'store'])->name('chat.store');
+

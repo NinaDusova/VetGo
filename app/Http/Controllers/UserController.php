@@ -51,7 +51,6 @@ class UserController extends Controller
             'email' => $request->input('email'),
         ]);
 
-        //TODO kontrola na serveri
         if (!empty($user->id)) {
             if ($doctor = Doctor::where('user_id', $user->id)->first()) {
                 $request->validate([

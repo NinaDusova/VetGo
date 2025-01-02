@@ -22,22 +22,28 @@
             @csrf
             <div class="form-group">
                 <label for="chip">Pet Chip ID:</label>
-                <select name="pet_id" class="form-control" required>
-                    <option value="">Select a Pet</option>
-                    @foreach($pets as $pet)
-                        <option value="{{ $pet->id }}">{{ $pet->name }} ({{ $pet->chip }})</option>
-                    @endforeach
-                </select>
+                <label>
+                    <select name="pet_id" class="form-control" required>
+                        <option value="">Select a Pet</option>
+                        @foreach($pets as $pet)
+                            <option value="{{ $pet->id }}">{{ $pet->name }} ({{ $pet->chip }})</option>
+                        @endforeach
+                    </select>
+                </label>
             </div>
 
             <div class="form-group">
                 <label for="date">Investigation Date:</label>
-                <input type="date" name="date" class="form-control" required>
+                <label>
+                    <input type="date" name="date" class="form-control" required>
+                </label>
             </div>
 
             <div class="form-group">
                 <label for="description">Description:</label>
-                <textarea name="description" class="form-control" rows="4" required></textarea>
+                <label>
+                    <textarea name="description" class="form-control" rows="4" required></textarea>
+                </label>
             </div>
 
             <button type="submit" class="btn btn-primary mt-3">Add Investigation</button>

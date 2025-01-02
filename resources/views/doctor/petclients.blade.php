@@ -10,7 +10,9 @@
         <h2>Pets under your care</h2>
 
         <form method="GET" action="{{ route('search') }}" class="mb-3 d-flex">
-            <input type="text" name="search" class="form-control" placeholder="Search by name or chip ID" value="{{ request()->input('search') }}">
+            <label>
+                <input type="text" name="search" class="form-control" placeholder="Search by name or chip ID" value="{{ request()->input('search') }}">
+            </label>
             <button type="submit" class="btn btn-primary ml-2">Search</button>
         </form>
 

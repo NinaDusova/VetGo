@@ -54,7 +54,7 @@
                     <a class="nav-link" href="#">SERVICE</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">CONTACTS</a>
+                    <a class="nav-link" href="{{route('chat.index')}}">CHAT</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('puzzle') }}">GAME</a>

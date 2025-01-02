@@ -1,3 +1,4 @@
+@php use Carbon\Carbon; @endphp
 @extends('layouts.header_logged')
 
 @section('header')
@@ -33,12 +34,14 @@
 
             <div class="form-group">
                 <label for="date">Investigation Date</label>
-                <input type="date" id="date" name="date" class="form-control" value="{{ \Carbon\Carbon::parse($investigation->date)->format('Y-m-d') }}">
+                <input type="date" id="date" name="date" class="form-control"
+                       value="{{ Carbon::parse($investigation->date)->format('Y-m-d') }}">
             </div>
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" class="form-control" rows="4">{{ $investigation->description }}</textarea>
+                <textarea id="description" name="description" class="form-control"
+                          rows="4">{{ $investigation->description }}</textarea>
             </div>
 
             <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
